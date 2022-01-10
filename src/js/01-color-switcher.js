@@ -1,15 +1,10 @@
-import '../css/common.css';
-
 const refs = {
   start: document.querySelector('.start'),
   stop: document.querySelector('.stop'),
 };
-//1.Повесить слушателя события на кнопки : start,stop
-//2.При нажатии кнопки старт запустить
-// console.log(refs.start);
+
 refs.start.addEventListener('click', OnBtnStart);
 refs.stop.addEventListener('click', OnBtnStop);
-const randomColor = getRandomHexColor();
 let timerId = null;
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
@@ -17,12 +12,15 @@ function getRandomHexColor() {
 
 function OnBtnStart() {
   timerId = setInterval(() => {
-    document.body.style.backgroundColor = randomColor;
-    // refs.start.classList.add();
+    // console.log('h1')
+    // refs.start.setAttribute('disabled', 'disabled');
+    document.body.style.backgroundColor = getRandomHexColor();
+    refs.start.disabled = true;
   }, 1000);
 }
 
 function OnBtnStop() {
   clearInterval(timerId);
+  // refs.start.classList.add((disabled = 'false'));
   document.body.style.backgroundColor = 'white';
 }
