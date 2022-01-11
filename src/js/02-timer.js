@@ -44,18 +44,21 @@ function convertMs(delta) {
 
   return { days, hours, minutes, seconds };
 }
-let resultTime = convertMs(nowDate);
+
 function updateTimer({ days, hours, minutes, seconds }) {
-  daysEl.textContent = days;
-  hoursEl.textContent = hours;
-  minutesEl.textContent = minutes;
-  secondsEl.textContent = seconds;
+  daysEl.textContent = addLeadingZero(days);
+  hoursEl.textContent = addLeadingZero(hours);
+  minutesEl.textContent = addLeadingZero(minutes);
+  secondsEl.textContent = addLeadingZero(seconds);
 }
 
 function selectedTime(userTime) {
-  const timerId = setInterval(() => {
-    const delta = userTime - nowDate;
-    convertMs(delta);
-    updateTimer(resultTime);
+  setInterval(() => {
+    const delta = userTime - Date.now();
+    let convertTime = convertMs(delta);
+    updateTimer(convertTime);
   }, 1000);
+}
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
 }
