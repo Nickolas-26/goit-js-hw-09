@@ -24,6 +24,7 @@ function onClickButton(e) {
         Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     delayValue += stepValue;
+    // console.log
   }
 }
 
